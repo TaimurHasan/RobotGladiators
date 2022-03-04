@@ -26,13 +26,15 @@ var fightOrSkip = function () {
 }
 
 var fight = function (enemy) {
-    var isPlayerTurn = true;
-
-    if (Math.random() > 0.5) {
-        isPlayerTurn = false;
-    }
-
     while(playerInfo.health > 0 && enemy.health > 0) {
+
+        var isPlayerTurn = true;
+
+        if (Math.random() > 0.5) {
+            isPlayerTurn = false;
+        }
+        console.log(isPlayerTurn);
+
         if (isPlayerTurn) {
             if (fightOrSkip ()) {
                 break;
@@ -61,7 +63,7 @@ var fight = function (enemy) {
             }
             
             //generate random damage value based on player's attack power
-            
+        } else {
             var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
             //Subtract the value of `enemy.attack` from the value of `playerInfo.health` and use that result to update the value in the `playerInfo.health` variable
