@@ -26,11 +26,17 @@ var fightOrSkip = function () {
 }
 
 var fight = function (enemy) {
-    while(playerInfo.health > 0 && enemy.health > 0) {
+    var isPlayerTurn = true;
 
-        if (fightOrSkip ()) {
-            break;
-        }
+    if (Math.random() > 0.5) {
+        isPlayerTurn = false;
+    }
+
+    while(playerInfo.health > 0 && enemy.health > 0) {
+        if (isPlayerTurn) {
+            if (fightOrSkip ()) {
+                break;
+            }
         
             //generate random damage value based on player's attack power
 
@@ -72,9 +78,11 @@ var fight = function (enemy) {
             else {
                 window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
             }
-       
+        }
+        // switch turn order for next around
+        isPlayerTurn = !isPlayerTurn;
     }
-}
+};
 
 var randomNumber = function(min, max) {
     var value = Math.floor(Math.random()* (max - min + 1)) + min;
