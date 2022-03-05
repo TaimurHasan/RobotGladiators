@@ -188,6 +188,24 @@ var endGame = function() {
     window.alert("You've lost your robot in battle.");
     }
 
+    var highScore = localStorage.getItem("highscore");
+    if (highScore === null) {
+        highScore = 0;
+    }
+
+    if (playerInfo.money > highScore) {
+        window.alert(playerInfo.name + " now has the high score of " + playerInfo.money + "!");
+        localStorage.setItem("highscore", playerInfo.money);
+        localStorage.setItem("name", playerInfo.name);
+    } else {
+        window.alert(playerInfo.name + " did not beat the high score of " + highScore + ". Maybe next time!")
+    }
+
+
+    localStorage.setItem("highScore", playerInfo.money)
+
+
+
     var playAgainConfirm = window.confirm("Would you like to play again?");
 
     if(playAgainConfirm) {
@@ -200,7 +218,7 @@ var endGame = function() {
 
 var shop = function () {
     var shopOptionPrompt = window.prompt(
-        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
+        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
     );
     
     shopOptionPrompt = parseInt(shopOptionPrompt);
